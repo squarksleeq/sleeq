@@ -3,16 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>SLEEQ — Official Website</title>
-  <meta name="description" content="SLEEQ Official Website">
+  <meta
+    name="description"
+    content="SLEEQ Official Website — Music, Art, Life."
+  >
+  <meta name="theme-color" content="#080808">
 
   <style>
     @font-face {
       font-family: 'Jeju Myeongjo';
       src: url('./JejuMyeongjo.ttf') format('truetype');
-      font-weight: 200;
+      font-weight: 200 700;
       font-style: normal;
       font-display: swap;
+    }
+
+    :root {
+      --bg: #080808;
+      --text: #f5f5f5;
+      --muted: #777;
+      --line: #292929;
+      --page-padding: 6%;
     }
 
     * {
@@ -23,21 +36,34 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 100px;
     }
 
     body {
-      background: #080808;
-      color: #fff;
+      background: var(--bg);
+      color: var(--text);
       font-family: 'Jeju Myeongjo', serif;
       min-height: 100vh;
+      overflow-x: hidden;
     }
+
+    a {
+      color: inherit;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
 
     header {
       position: absolute;
       top: 0;
       left: 0;
+      z-index: 10;
+
       width: 100%;
-      padding: 32px 5%;
+      padding: 32px var(--page-padding);
+
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -51,20 +77,50 @@
       letter-spacing: 4px;
     }
 
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .header-nav a {
+      color: #aaa;
+      text-decoration: none;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      transition: color 0.25s;
+    }
+
+    .header-nav a:hover {
+      color: #fff;
+    }
+
     .header-label {
-      color: #777;
+      color: #666;
       font-size: 10px;
       letter-spacing: 2px;
     }
 
+
+    /* =========================
+       MAIN / INTRO
+    ========================= */
+
     main {
-      min-height: 100vh;
+      min-height: 100svh;
+
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 120px 24px 60px;
+
+      padding: 120px 24px 80px;
       text-align: center;
+    }
+
+    .intro {
+      width: 100%;
+      max-width: 900px;
     }
 
     .artist-name {
@@ -73,15 +129,6 @@
       letter-spacing: -0.07em;
       line-height: 1;
       margin-bottom: 36px;
-    }
-
-    .artist-name span {
-      display: inline-block;
-      letter-spacing: -0.07em;
-    }
-
-    .artist-name span:last-child {
-      letter-spacing: -0.09em;
     }
 
     .artist-photo {
@@ -96,16 +143,23 @@
     .description {
       max-width: 460px;
       margin: 0 auto 40px;
+
       color: #aaa;
       font-size: 14px;
       line-height: 2;
       word-break: keep-all;
     }
 
+
+    /* =========================
+       SOCIAL LINKS
+    ========================= */
+
     .social-links {
       display: flex;
       justify-content: center;
       align-items: center;
+
       gap: 12px;
       width: 100%;
       max-width: 510px;
@@ -116,85 +170,382 @@
       display: inline-flex;
       justify-content: center;
       align-items: center;
+
       flex: 1;
       min-width: 0;
       padding: 16px 12px;
+
       border: 1px solid #555;
       color: #fff;
       text-decoration: none;
+
       font-size: 11px;
       letter-spacing: 1.5px;
       white-space: nowrap;
-      transition: background 0.25s, color 0.25s;
+
+      transition:
+        background 0.25s,
+        color 0.25s,
+        border-color 0.25s;
     }
 
     .social-button:hover {
       background: #fff;
       color: #080808;
+      border-color: #fff;
     }
 
-    footer {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      padding: 28px 5%;
+
+    /* =========================
+       DISCOGRAPHY
+    ========================= */
+
+    .discography {
+      padding: 110px var(--page-padding) 100px;
+      border-top: 1px solid var(--line);
+      scroll-margin-top: 30px;
+    }
+
+    .archive-heading {
       display: flex;
       justify-content: space-between;
+      align-items: flex-end;
+
+      margin-bottom: 48px;
+    }
+
+    .section-label {
+      margin-bottom: 16px;
+
+      color: #777;
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+
+    .archive-heading h2 {
+      font-size: clamp(30px, 5vw, 56px);
+      font-weight: 400;
+      letter-spacing: -0.04em;
+      line-height: 1.2;
+    }
+
+    .archive-count {
+      padding-bottom: 8px;
+
+      color: #555;
+      font-size: 11px;
+      letter-spacing: 2px;
+      white-space: nowrap;
+    }
+
+
+    /* ALBUM GRID */
+
+    .album-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .album-card {
+      min-width: 0;
+    }
+
+    .album-cover {
+      position: relative;
+      overflow: hidden;
+
+      width: 100%;
+      aspect-ratio: 1 / 1;
+
+      background: #151515;
+    }
+
+    .album-cover img {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      transition:
+        transform 0.6s ease,
+        opacity 0.4s ease;
+    }
+
+    .album-card:hover .album-cover img {
+      transform: scale(1.035);
+      opacity: 0.8;
+    }
+
+    .album-index {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+
+      color: #fff;
+      font-size: 11px;
+      letter-spacing: 1px;
+
+      text-shadow: 0 1px 8px #000;
+    }
+
+    .album-arrow {
+      position: absolute;
+      right: 16px;
+      bottom: 16px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: 34px;
+      height: 34px;
+
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+
+      color: #fff;
+      font-size: 16px;
+
+      opacity: 0;
+      transform: translateY(5px);
+
+      transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+    }
+
+    .album-card:hover .album-arrow {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+    /* ALBUM INFORMATION */
+
+    .album-info {
+      padding-top: 20px;
+    }
+
+    .album-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .album-title-row h3 {
+      font-size: clamp(16px, 2vw, 23px);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+
+    .album-title-row span {
+      color: #777;
+      font-size: 12px;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    .album-info > p {
+      margin-top: 10px;
+
+      color: #666;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      line-height: 1.8;
+    }
+
+    .archive-bottom {
+      display: flex;
+      justify-content: space-between;
+
+      margin-top: 72px;
+      padding-top: 18px;
+
+      border-top: 1px solid var(--line);
+
+      color: #555;
+      font-size: 9px;
+      letter-spacing: 2px;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      width: 100%;
+      padding: 28px var(--page-padding);
+
+      display: flex;
+      justify-content: space-between;
+
+      border-top: 1px solid #181818;
+
       color: #555;
       font-size: 10px;
       letter-spacing: 1px;
     }
 
-@media (max-width: 600px) {
-  header {
-    padding: 24px 6%;
-  }
 
-  .header-label {
-    font-size: 9px;
-  }
+    /* =========================
+       MOBILE
+    ========================= */
 
-  .artist-name {
-    margin-bottom: 28px;
-  }
+    @media (max-width: 600px) {
 
-  .description {
-    font-size: 13px;
-    margin-bottom: 32px;
-  }
+      :root {
+        --page-padding: 6%;
+      }
 
-  .social-links {
-    flex-direction: column;
-    width: 100%;
-    max-width: 280px;
-    gap: 8px;
-  }
+      header {
+        padding: 24px var(--page-padding);
+      }
 
-  .social-button {
-    width: 100%;
-    flex: none;
-    padding: 14px 12px;
-    font-size: 9px;
-    letter-spacing: 1px;
-  }
+      .logo {
+        font-size: 18px;
+      }
 
-  footer {
-    padding: 24px 6%;
-  }
-}
+      .header-nav {
+        gap: 0;
+      }
+
+      .header-nav a {
+        font-size: 9px;
+        letter-spacing: 0.8px;
+      }
+
+      .header-label {
+        display: none;
+      }
+
+      main {
+        min-height: 100svh;
+        padding: 110px 24px 70px;
+      }
+
+      .artist-name {
+        font-size: clamp(64px, 17vw, 100px);
+        margin-bottom: 28px;
+      }
+
+      .artist-photo {
+        margin-bottom: 32px;
+      }
+
+      .description {
+        font-size: 13px;
+        margin-bottom: 32px;
+      }
+
+      .social-links {
+        flex-direction: column;
+        width: 100%;
+        max-width: 280px;
+        gap: 8px;
+      }
+
+      .social-button {
+        width: 100%;
+        flex: none;
+        padding: 14px 12px;
+
+        font-size: 9px;
+        letter-spacing: 1px;
+      }
+
+
+      /* MOBILE ARCHIVE */
+
+      .discography {
+        padding: 76px var(--page-padding) 70px;
+      }
+
+      .archive-heading {
+        margin-bottom: 32px;
+      }
+
+      .archive-heading h2 {
+        font-size: 30px;
+      }
+
+      .section-label {
+        font-size: 9px;
+        margin-bottom: 12px;
+      }
+
+      .archive-count {
+        font-size: 9px;
+        letter-spacing: 1px;
+      }
+
+      .album-grid {
+        grid-template-columns: 1fr;
+        gap: 44px;
+      }
+
+      .album-info {
+        padding-top: 16px;
+      }
+
+      .album-title-row h3 {
+        font-size: 22px;
+      }
+
+      .album-arrow {
+        opacity: 1;
+        transform: none;
+      }
+
+      .archive-bottom {
+        margin-top: 56px;
+      }
+
+      footer {
+        padding: 24px var(--page-padding);
+      }
+    }
+
+
+    /* REDUCED MOTION */
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+      }
+    }
+
   </style>
 </head>
 
 <body>
 
+  <!-- HEADER -->
+
   <header>
     <a href="#" class="logo">SLEEQ</a>
-    <span class="header-label">OFFICIAL WEBSITE</span>
+
+    <nav class="header-nav">
+      <a href="#discography">DISCOGRAPHY ↘</a>
+      <span class="header-label">OFFICIAL WEBSITE</span>
+    </nav>
   </header>
+
+
+  <!-- MAIN INTRO -->
 
   <main>
     <section class="intro">
+
       <h1 class="artist-name">SLEEQ</h1>
 
       <img
@@ -211,6 +562,7 @@
       </p>
 
       <div class="social-links">
+
         <a
           class="social-button"
           href="https://www.instagram.com/squarksleeq"
@@ -237,9 +589,140 @@
         >
           SOUNDCLOUD ↗
         </a>
+
       </div>
+
     </section>
   </main>
+
+
+  <!-- DISCOGRAPHY -->
+
+  <section class="discography" id="discography">
+
+    <div class="archive-heading">
+
+      <div>
+        <p class="section-label">
+          SLEEQ / DISCOGRAPHY
+        </p>
+
+        <h2>ALBUM ARCHIVE</h2>
+      </div>
+
+      <span class="archive-count">
+        001 — 003
+      </span>
+
+    </div>
+
+
+    <div class="album-grid">
+
+      <!-- COLOSSUS -->
+
+      <article class="album-card">
+
+        <div class="album-cover">
+
+          <img
+            src="./images/colossus.jpg"
+            alt="COLOSSUS album cover"
+            loading="lazy"
+          >
+
+          <span class="album-index">01</span>
+          <span class="album-arrow" aria-hidden="true">↗</span>
+
+        </div>
+
+        <div class="album-info">
+
+          <div class="album-title-row">
+            <h3>COLOSSUS</h3>
+            <span>2016</span>
+          </div>
+
+          <p>2ND FULL-LENGTH ALBUM</p>
+
+        </div>
+
+      </article>
+
+
+      <!-- LMFIL -->
+
+      <article class="album-card">
+
+        <div class="album-cover">
+
+          <img
+            src="./images/lmfil.jpg"
+            alt="LMFIL album cover"
+            loading="lazy"
+          >
+
+          <span class="album-index">02</span>
+          <span class="album-arrow" aria-hidden="true">↗</span>
+
+        </div>
+
+        <div class="album-info">
+
+          <div class="album-title-row">
+            <h3>LMFIL</h3>
+            <span>2018</span>
+          </div>
+
+          <p>3RD FULL-LENGTH ALBUM</p>
+
+        </div>
+
+      </article>
+
+
+      <!-- UNTETHERED -->
+
+      <article class="album-card">
+
+        <div class="album-cover">
+
+          <img
+            src="./images/untethered.jpg"
+            alt="자유낙하 Untethered album cover"
+            loading="lazy"
+          >
+
+          <span class="album-index">03</span>
+          <span class="album-arrow" aria-hidden="true">↗</span>
+
+        </div>
+
+        <div class="album-info">
+
+          <div class="album-title-row">
+            <h3>자유낙하</h3>
+            <span>2026</span>
+          </div>
+
+          <p>UNTETHERED · 4TH FULL-LENGTH ALBUM</p>
+
+        </div>
+
+      </article>
+
+    </div>
+
+
+    <div class="archive-bottom">
+      <span>THREE ALBUMS</span>
+      <span>2016 — 2026</span>
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
 
   <footer>
     <span>© SLEEQ</span>
