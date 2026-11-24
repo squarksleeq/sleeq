@@ -279,6 +279,92 @@ a {
     font-size: 16px;
   }
 
+  .listen-section {
+  margin-bottom: 80px;
+}
+
+.listen-label {
+  margin: 0 0 18px;
+  color: #777;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.listen-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.listen-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-width: 0;
+  padding: 24px;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.2s, opacity 0.2s;
+}
+
+.listen-link + .listen-link {
+  border-left: 1px solid var(--line);
+}
+
+.listen-link:hover {
+  background: #151515;
+}
+
+.listen-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+.listen-icon {
+  width: 25px;
+  height: 25px;
+  flex: 0 0 25px;
+}
+
+.spotify-icon {
+  color: #1ed760;
+}
+
+.youtube-icon {
+  color: #ff0033;
+}
+
+.listen-action {
+  color: #999;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-align: right;
+}
+
+.listen-link:hover .listen-action {
+  color: #fff;
+}
+
+@media (max-width: 700px) {
+  .listen-links {
+    grid-template-columns: 1fr;
+  }
+
+  .listen-link {
+    padding: 20px 0;
+  }
+
+  .listen-link + .listen-link {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+}
+
   .site-footer {
     padding: 24px 6%;
   }
