@@ -727,6 +727,82 @@
   <footer>
     <span>© SLEEQ</span>
     <span>SEOUL, KOREA</span>
+
+	  /* LISTEN & WATCH */
+
+.listen-section {
+  margin-bottom: 100px;
+}
+
+.listen-label {
+  color: #777;
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+}
+
+.listen-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.listen-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 0;
+
+  color: #fff;
+  transition: opacity 0.25s;
+}
+
+.listen-link + .listen-link {
+  border-left: 1px solid var(--line);
+  padding-left: 24px;
+}
+
+.listen-link:hover {
+  opacity: 0.55;
+}
+
+.listen-title {
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.listen-platform {
+  color: #777;
+  font-size: 9px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+  .listen-section {
+    margin-bottom: 72px;
+  }
+
+  .listen-links {
+    grid-template-columns: 1fr;
+  }
+
+  .listen-link {
+    padding: 20px 0;
+  }
+
+  .listen-link + .listen-link {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    padding-left: 0;
+  }
+
+  .listen-title {
+    font-size: 11px;
+  }
+}
   </footer>
 
 </body>
