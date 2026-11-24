@@ -369,3 +369,39 @@ a {
     padding: 24px 6%;
   }
 }
+
+/* 스트리밍 링크 크기 수정 */
+.listen-links .listen-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 20px;
+}
+
+.listen-links .listen-brand {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+}
+
+.listen-links .listen-icon {
+  display: block;
+  width: 24px !important;
+  height: 24px !important;
+  flex: 0 0 24px;
+}
+
+.listen-links .listen-action {
+  font-size: 9px;
+  text-align: right;
+}
+
+@media (max-width: 700px) {
+  .listen-links .listen-link {
+    padding: 16px 0;
+  }
+}
