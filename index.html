@@ -538,6 +538,31 @@
   font-size: 28px;
 }
 
+	  /* 앨범 카드 hover 효과 */
+.album-card {
+  display: block;
+  transition: transform 0.25s ease;
+}
+
+.album-card:hover {
+  transform: translateY(-6px);
+}
+
+/* 앨범 커버 확대 */
+.album-cover img {
+  transition: transform 0.35s ease;
+}
+
+.album-card:hover .album-cover img {
+  transform: scale(1.03);
+}
+
+/* 키보드로 선택했을 때 표시 */
+.album-card:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 6px;
+}
+
   </style>
 </head>
 
