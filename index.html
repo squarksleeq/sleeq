@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SLEEQ — Official Website</title>
+  <meta name="description" content="SLEEQ Official Website">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #080808;
+      color: #fff;
+      font-family: Arial, "Noto Sans KR", sans-serif;
+      min-height: 100vh;
+    }
+
+    header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 32px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: #fff;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 4px;
+    }
+
+    .header-label {
+      color: #777;
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+
+    main {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 24px 60px;
+      text-align: center;
+    }
+
+    .artist-name {
+      font-size: clamp(72px, 15vw, 180px);
+      font-weight: 700;
+      letter-spacing: -0.07em;
+      line-height: 1;
+      margin-bottom: 36px;
+    }
+
+    .artist-name span {
+      display: inline-block;
+      letter-spacing: -0.07em;
+    }
+
+    .artist-name span:last-child {
+      letter-spacing: -0.09em;
+    }
+
+    .description {
+      max-width: 460px;
+      margin: 0 auto 40px;
+      color: #aaa;
+      font-size: 14px;
+      line-height: 2;
+      word-break: keep-all;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .social-button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 150px;
+      padding: 16px 24px;
+      border: 1px solid #555;
+      color: #fff;
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 2px;
+      transition: background 0.25s, color 0.25s;
+    }
+
+    .social-button:hover {
+      background: #fff;
+      color: #080808;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 28px 5%;
+      display: flex;
+      justify-content: space-between;
+      color: #555;
+      font-size: 10px;
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 24px 6%;
+      }
+
+      .header-label {
+        font-size: 9px;
+      }
+
+      .artist-name {
+        margin-bottom: 28px;
+      }
+
+      .description {
+        font-size: 13px;
+        margin-bottom: 32px;
+      }
+
+      .social-links {
+        flex-direction: column;
+        width: 100%;
+        max-width: 280px;
+      }
+
+      .social-button {
+        width: 100%;
+      }
+
+      footer {
+        padding: 24px 6%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <a href="#" class="logo">SLEEQ</a>
+    <span class="header-label">OFFICIAL WEBSITE</span>
+  </header>
+
+  <main>
+    <section class="intro">
+      <h1 class="artist-name">SLEEQ</h1>
+
+      <p class="description">
+        슬릭(SLEEQ)은 자신만의 음악과 이야기를 만들어가는
+        독립 아티스트입니다.
+        <br>
+        Music / Art / Life
+      </p>
+
+      <div class="social-links">
+        <a
+          class="social-button"
+          href="https://www.instagram.com/squarksleeq"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          INSTAGRAM ↗
+        </a>
+
+        <a
+          class="social-button"
+          href="https://www.youtube.com/@squarksleeq"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          YOUTUBE ↗
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© SLEEQ</span>
+    <span>SEOUL, KOREA</span>
+  </footer>
+
+</body>
+</html>
