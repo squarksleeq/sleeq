@@ -405,3 +405,42 @@ a {
     padding: 16px 0;
   }
 }
+
+/* LISTEN & WATCH: 링크를 버튼처럼 보이게 */
+.listen-links {
+  gap: 12px;
+  border: 0;
+}
+
+.listen-links .listen-link {
+  box-sizing: border-box;
+  min-height: 64px;
+  padding: 16px 20px;
+  border: 1px solid #383838;
+  background: #0b0b0b;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.listen-links .listen-link + .listen-link {
+  border-left: 1px solid #383838;
+}
+
+.listen-links .listen-link:hover {
+  background: #1a1a1a;
+  border-color: #777;
+}
+
+.listen-links .listen-brand {
+  color: #fff;
+}
+
+.listen-links .listen-action {
+  color: #aaa;
+  transition: color 0.2s ease;
+}
+
+.listen-links .listen-link:hover .listen-action {
+  color: #fff;
+}
