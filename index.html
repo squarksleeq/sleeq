@@ -563,6 +563,199 @@
   outline-offset: 6px;
 }
 
+
+
+    /* INTRO PHOTO ARCHIVE */
+    main {
+      padding: 118px 6% 88px;
+    }
+
+    .intro-gallery {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .intro-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 30px;
+    }
+
+    .intro-gallery .artist-name {
+      margin: 0;
+      font-size: clamp(64px, 11vw, 132px);
+      line-height: .82;
+      letter-spacing: -.075em;
+    }
+
+    .gallery-caption {
+      color: #777;
+      font: 9px/1.6 Arial, sans-serif;
+      letter-spacing: .16em;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .gallery-caption span { color: #aaa; }
+
+    .portrait-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(8px, 1.35vw, 18px);
+    }
+
+    .portrait-tile {
+      position: relative;
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      padding: 0;
+      overflow: hidden;
+      border: 0;
+      background: #171717;
+      cursor: zoom-in;
+      text-align: left;
+    }
+
+    .portrait-tile img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(.82);
+      transition: transform .65s cubic-bezier(.2,.7,.2,1), opacity .35s ease;
+    }
+
+    .portrait-tile:hover img,
+    .portrait-tile:focus-visible img {
+      transform: scale(1.045);
+      opacity: .82;
+    }
+
+    .portrait-tile:focus-visible {
+      outline: 1px solid #fff;
+      outline-offset: 4px;
+    }
+
+    .portrait-number {
+      position: absolute;
+      left: 12px;
+      bottom: 11px;
+      color: #fff;
+      font: 10px/1 Arial, sans-serif;
+      letter-spacing: .12em;
+      text-shadow: 0 1px 8px #000;
+      opacity: .85;
+    }
+
+    .photo-viewer {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: grid;
+      grid-template-columns: 56px minmax(0, 1fr) 56px;
+      align-items: center;
+      justify-items: center;
+      gap: 14px;
+      padding: 5vh 4vw;
+      background: rgba(5, 5, 5, .96);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .25s ease, visibility .25s ease;
+    }
+
+    .photo-viewer.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .viewer-image {
+      display: block;
+      max-width: 100%;
+      max-height: 88vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      box-shadow: 0 12px 60px rgba(0,0,0,.35);
+    }
+
+    .viewer-close, .viewer-prev, .viewer-next {
+      display: grid;
+      place-items: center;
+      border: 1px solid #444;
+      border-radius: 50%;
+      background: transparent;
+      color: #eee;
+      cursor: pointer;
+      transition: background .2s, color .2s, border-color .2s;
+    }
+
+    .viewer-close:hover, .viewer-prev:hover, .viewer-next:hover {
+      background: #eee;
+      color: #080808;
+      border-color: #eee;
+    }
+
+    .viewer-close {
+      position: absolute;
+      top: 24px;
+      right: 28px;
+      width: 42px;
+      height: 42px;
+      font-size: 24px;
+    }
+
+    .viewer-prev, .viewer-next {
+      width: 44px;
+      height: 44px;
+      font-size: 22px;
+    }
+
+    .viewer-meta {
+      position: absolute;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%);
+      color: #888;
+      font: 10px/1.4 Arial, sans-serif;
+      letter-spacing: .16em;
+    }
+
+    body.viewer-open { overflow: hidden; }
+
+    @media (max-width: 600px) {
+      main { padding: 108px 5% 64px; }
+      .intro-heading {
+        display: block;
+        margin-bottom: 22px;
+      }
+      .intro-gallery .artist-name {
+        font-size: clamp(64px, 20vw, 100px);
+        margin-bottom: 14px;
+      }
+      .gallery-caption { text-align: left; font-size: 8px; }
+      .portrait-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+      .portrait-tile { aspect-ratio: 3 / 4; }
+      .portrait-number { left: 7px; bottom: 7px; font-size: 8px; }
+      .photo-viewer {
+        grid-template-columns: 34px minmax(0, 1fr) 34px;
+        gap: 5px;
+        padding: 60px 8px;
+      }
+      .viewer-prev, .viewer-next { width: 32px; height: 32px; font-size: 18px; }
+      .viewer-close { top: 16px; right: 16px; }
+      .viewer-image { max-width: calc(100vw - 90px); max-height: 78vh; }
+      .viewer-meta { bottom: 18px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .portrait-tile img, .photo-viewer { transition: none; }
+    }
+
   </style>
 </head>
 
@@ -583,54 +776,50 @@
   <!-- MAIN INTRO -->
 
   <main>
-    <section class="intro">
-
-      <h1 class="artist-name">SLEEQ</h1>
-
-      <img
-        class="artist-photo"
-        src="./260916_14_0241.jpg"
-        alt="SLEEQ artist portrait"
-      >
-
-      <p class="description">
-        슬릭(SLEEQ)은 자신만의 음악과 이야기를 만들어가는
-        독립 아티스트입니다.
-        <br>
-        Music / Art / Life
-      </p>
-
-      <div class="social-links">
-
-        <a
-          class="social-button"
-          href="https://www.instagram.com/squarksleeq"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          INSTAGRAM ↗
-        </a>
-
-        <a
-          class="social-button"
-          href="https://www.youtube.com/@squarksleeq"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          YOUTUBE ↗
-        </a>
-
-        <a
-          class="social-button"
-          href="https://soundcloud.com/squarksleeq"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          SOUNDCLOUD ↗
-        </a>
-
+    <section class="intro intro-gallery">
+      <div class="intro-heading">
+        <h1 class="artist-name">SLEEQ</h1>
+        <p class="gallery-caption">SELECT A FRAME TO EXPAND <span>— 09 PORTRAITS</span></p>
       </div>
 
+      <div class="portrait-grid" aria-label="SLEEQ photo archive">
+        <button class="portrait-tile" type="button" data-full="./images/intro-01.jpg" aria-label="사진 1 크게 보기">
+          <img src="./images/intro-01.jpg" alt="SLEEQ portrait in a black suit" loading="eager">
+          <span class="portrait-number">01</span>
+        </button>
+        <button class="portrait-tile" type="button" data-full="./images/intro-02.jpg" aria-label="사진 2 크게 보기">
+          <img src="./images/intro-02.jpg" alt="SLEEQ in a black suit, standing" loading="eager">
+          <span class="portrait-number">02</span>
+        </button>
+        <button class="portrait-tile" type="button" data-full="./images/intro-03.jpg" aria-label="사진 3 크게 보기">
+          <img src="./images/intro-03.jpg" alt="SLEEQ in a white shirt and tie" loading="eager">
+          <span class="portrait-number">03</span>
+        </button>
+        <button class="portrait-tile" type="button" data-full="./images/intro-04.jpg" aria-label="사진 4 크게 보기">
+          <img src="./images/intro-04.jpg" alt="SLEEQ in a white shirt, portrait" loading="lazy">
+          <span class="portrait-number">04</span>
+        </button>
+        <button class="portrait-tile" type="button" data-full="./images/intro-05.jpg" aria-label="사진 5 크게 보기">
+          <img src="./images/intro-05.jpg" alt="SLEEQ in a white shirt, close-up" loading="lazy">
+          <span class="portrait-number">05</span>
+        </button>
+        <button class="portrait-tile" type="button" data-full="./images/intro-06.jpg" aria-label="사진 6 크게 보기">
+          <img src="./images/intro-06.jpg" alt="SLEEQ in a red jacket on a rooftop" loading="lazy">
+          <span class="portrait-number">06</span>
+        </button>
+        <button class="portrait-tile" type="button" data-full="./images/intro-07.jpg" aria-label="사진 7 크게 보기">
+          <img src="./images/intro-07.jpg" alt="SLEEQ in profile in a striped shirt" loading="lazy">
+          <span class="portrait-number">07</span>
+        </button>
+        <button class="portrait-tile" type="button" data-full="./images/intro-08.jpg" aria-label="사진 8 크게 보기">
+          <img src="./images/intro-08.jpg" alt="SLEEQ standing outdoors in a blue shirt" loading="lazy">
+          <span class="portrait-number">08</span>
+        </button>
+        <button class="portrait-tile" type="button" data-full="./images/intro-09.jpg" aria-label="사진 9 크게 보기">
+          <img src="./images/intro-09.jpg" alt="SLEEQ in a red jacket, close-up" loading="lazy">
+          <span class="portrait-number">09</span>
+        </button>
+      </div>
     </section>
   </main>
 
@@ -774,6 +963,72 @@
     <span>© SLEEQ</span>
     <span>SEOUL, KOREA</span>
   </footer>
+
+
+
+  <div class="photo-viewer" id="photoViewer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <button class="viewer-close" type="button" aria-label="닫기">×</button>
+    <button class="viewer-prev" type="button" aria-label="이전 사진">‹</button>
+    <img class="viewer-image" src="" alt="">
+    <button class="viewer-next" type="button" aria-label="다음 사진">›</button>
+    <p class="viewer-meta" aria-live="polite"></p>
+  </div>
+
+  <script>
+    (() => {
+      const tiles = [...document.querySelectorAll('.portrait-tile')];
+      const viewer = document.getElementById('photoViewer');
+      const image = viewer.querySelector('.viewer-image');
+      const meta = viewer.querySelector('.viewer-meta');
+      const closeButton = viewer.querySelector('.viewer-close');
+      const previousButton = viewer.querySelector('.viewer-prev');
+      const nextButton = viewer.querySelector('.viewer-next');
+      let current = 0;
+      let returnFocus = null;
+
+      function showPhoto(index) {
+        current = (index + tiles.length) % tiles.length;
+        const tile = tiles[current];
+        const thumb = tile.querySelector('img');
+        image.src = tile.dataset.full;
+        image.alt = thumb.alt;
+        meta.textContent = String(current + 1).padStart(2, '0') + ' / ' + String(tiles.length).padStart(2, '0');
+      }
+
+      function openViewer(index) {
+        returnFocus = document.activeElement;
+        showPhoto(index);
+        viewer.classList.add('is-open');
+        viewer.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('viewer-open');
+        closeButton.focus();
+      }
+
+      function closeViewer() {
+        viewer.classList.remove('is-open');
+        viewer.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('viewer-open');
+        image.src = '';
+        if (returnFocus) returnFocus.focus();
+      }
+
+      tiles.forEach((tile, index) => tile.addEventListener('click', () => openViewer(index)));
+      closeButton.addEventListener('click', closeViewer);
+      previousButton.addEventListener('click', () => showPhoto(current - 1));
+      nextButton.addEventListener('click', () => showPhoto(current + 1));
+
+      viewer.addEventListener('click', event => {
+        if (event.target === viewer) closeViewer();
+      });
+
+      document.addEventListener('keydown', event => {
+        if (!viewer.classList.contains('is-open')) return;
+        if (event.key === 'Escape') closeViewer();
+        if (event.key === 'ArrowLeft') showPhoto(current - 1);
+        if (event.key === 'ArrowRight') showPhoto(current + 1);
+      });
+    })();
+  </script>
 
 </body>
 </html>
