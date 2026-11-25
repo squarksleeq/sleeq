@@ -9,7 +9,7 @@
     name="description"
     content="SLEEQ Official Website — Music, Art, Life."
   >
-  <meta name="theme-color" content="#080808">
+  <meta name="theme-color" content="#bd2a23">
 
   <style>
     @font-face {
@@ -885,6 +885,144 @@
 
     @media (prefers-reduced-motion: reduce) {
       .portrait-tile img, .photo-viewer { transition: none; }
+    }
+
+
+
+    /* =========================
+       COLOR SYSTEM — RED / YELLOW / BLACK
+    ========================= */
+    :root {
+      --bg: #000000;
+      --text: #f7f097;
+      --muted: #5b160f;
+      --line: rgba(0,0,0,.28);
+      --red: #bd2a23;
+      --yellow: #f7f097;
+      --black: #000000;
+      --page-padding: 5vw;
+    }
+
+    body { background: var(--black); color: var(--yellow); }
+    header { background: var(--red); color: var(--black); }
+    .logo, .header-nav a, .header-label { color: var(--black); }
+    .header-nav a:hover { color: var(--yellow); }
+
+    main {
+      background: var(--red);
+      padding: 104px 4vw 48px;
+      min-height: auto;
+      display: block;
+    }
+    .intro {
+      width: 100%;
+      max-width: 1600px;
+      min-height: min(690px, calc(100svh - 150px));
+      margin: 0 auto;
+    }
+    .collage-label, .collage-note { color: rgba(0,0,0,.72); }
+    .collage-title {
+      color: var(--black);
+      mix-blend-mode: normal;
+      font-size: clamp(58px, 12vw, 176px);
+      left: 3%;
+      top: 38%;
+      letter-spacing: -.085em;
+    }
+    .collage-rule { background: rgba(0,0,0,.35); }
+    .photo-tile {
+      background: var(--yellow);
+      border: 1px solid rgba(0,0,0,.55);
+      box-shadow: 5px 6px 0 rgba(0,0,0,.14);
+    }
+    .photo-tile img { filter: saturate(.9) contrast(1.02); }
+    .photo-index { color: var(--yellow); text-shadow: 0 1px 5px #000; }
+    .photo-tile:focus-visible { outline-color: var(--yellow); }
+
+    .discography {
+      position: relative;
+      padding: 86px var(--page-padding) 72px;
+      background: var(--yellow);
+      color: var(--black);
+      border-top: 0;
+      scroll-margin-top: 20px;
+      overflow: hidden;
+    }
+    .discography::before {
+      content: "02 / DISCOGRAPHY";
+      display: inline-block;
+      margin: -86px 0 42px calc(-1 * var(--page-padding));
+      padding: 14px 28px 12px var(--page-padding);
+      background: var(--black);
+      color: var(--yellow);
+      font: 10px/1 Arial, sans-serif;
+      letter-spacing: .18em;
+    }
+    .archive-heading {
+      align-items: flex-end;
+      margin-bottom: 34px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(0,0,0,.32);
+    }
+    .section-label { color: rgba(0,0,0,.62); }
+    .archive-heading h2 {
+      color: var(--black);
+      font-family: Arial, sans-serif;
+      font-weight: 800;
+      letter-spacing: -.065em;
+      text-transform: uppercase;
+    }
+    .archive-count { color: rgba(0,0,0,.6); }
+    .album-grid { gap: clamp(12px, 2vw, 28px); }
+    .album-card {
+      position: relative;
+      padding: 10px;
+      background: var(--black);
+      color: var(--yellow);
+      box-shadow: 7px 7px 0 rgba(0,0,0,.13);
+      transition: transform .3s ease;
+    }
+    .album-card:nth-child(2) { transform: translateY(18px); }
+    .album-card:nth-child(3) { transform: translateY(36px); }
+    .album-card:hover { transform: translateY(-5px); }
+    .album-card:nth-child(2):hover, .album-card:nth-child(3):hover { transform: translateY(10px); }
+    .album-cover { background: #171717; }
+    .album-info { padding: 14px 4px 10px; }
+    .album-title-row h3 { color: var(--yellow); }
+    .album-title-row span, .album-info p { color: rgba(247,240,151,.62); }
+    .album-index { color: var(--yellow); }
+    .album-arrow { border-color: var(--yellow); color: var(--yellow); }
+    .archive-bottom {
+      margin-top: 68px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(0,0,0,.32);
+      color: rgba(0,0,0,.62);
+    }
+    .contact-section, footer {
+      background: var(--black);
+      color: var(--yellow);
+    }
+    .contact-section a { color: var(--yellow); }
+    .photo-viewer { background: rgba(0,0,0,.97); }
+    .viewer-close:hover, .viewer-prev:hover, .viewer-next:hover {
+      background: var(--yellow); color: var(--black); border-color: var(--yellow);
+    }
+
+    @media (max-width: 700px) {
+      header { padding: 22px 5vw; }
+      main { padding: 92px 4vw 34px; }
+      .intro { min-height: 640px; }
+      .collage-title { font-size: clamp(52px, 14vw, 100px); left: 2%; top: 43%; }
+      .discography { padding: 64px 5vw 58px; }
+      .discography::before { margin-top: -64px; }
+      .album-grid { grid-template-columns: 1fr 1fr; }
+      .album-card:nth-child(2), .album-card:nth-child(3) { transform: none; }
+      .album-card:nth-child(2):hover, .album-card:nth-child(3):hover { transform: translateY(-5px); }
+      .archive-bottom { margin-top: 28px; }
+    }
+    @media (max-width: 420px) {
+      .album-grid { grid-template-columns: 1fr; }
+      .album-card { max-width: 100%; }
     }
 
   </style>
