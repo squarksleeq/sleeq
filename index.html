@@ -143,16 +143,16 @@
       margin: 0;
       color: rgba(245,245,245,.94);
       font-family: Arial, sans-serif;
-      font-size: clamp(72px, 13vw, 190px);
+      font-size: clamp(58px, 13vw, 190px);
       font-weight: 700;
-      line-height: .78;
-      letter-spacing: -.095em;
+      line-height: .85;
+      letter-spacing: -.075em;
+      white-space: nowrap;
+      width: max-content;
+      max-width: none;
       pointer-events: none;
       mix-blend-mode: difference;
     }
-
-    .collage-title span { display: block; }
-    .collage-title span:last-child { padding-left: .48em; }
 
     .collage-note {
       position: absolute;
@@ -623,7 +623,7 @@
       main { min-height: 100svh; padding: 100px 5vw 44px; }
       .intro { min-height: 680px; min-height: calc(100svh - 145px); }
       .collage-label { top: 0; left: 0; font-size: 8px; }
-      .collage-title { top: 39%; left: 0; font-size: clamp(64px, 19vw, 120px); }
+      .collage-title { top: 39%; left: 0; font-size: clamp(52px, 17vw, 112px); letter-spacing: -.075em; white-space: nowrap; }
       .photo-1 { left: 5%; top: 8%; width: 32%; height: 31%; }
       .photo-2 { left: 41%; top: 5%; width: 22%; height: 24%; }
       .photo-3 { right: 3%; left: auto; top: 15%; width: 28%; height: 30%; }
@@ -908,7 +908,7 @@
   <main>
     <section class="intro" aria-label="SLEEQ photo archive">
       <p class="collage-label">SLEEQ / PERSONAL ARCHIVE — 2026</p>
-      <h1 class="collage-title"><span>SLEE</span><span>Q.</span></h1>
+      <h1 class="collage-title">SLEEQ</h1>
 
       <button class="photo-tile photo-1" data-photo="0" aria-label="사진 1 크게 보기"><img src="./images/intro-01.jpg" alt="SLEEQ, black suit portrait"><span class="photo-index">01</span></button>
       <button class="photo-tile photo-2" data-photo="1" aria-label="사진 2 크게 보기"><img src="./images/intro-02.jpg" alt="SLEEQ, black suit portrait"><span class="photo-index">02</span></button>
