@@ -528,10 +528,18 @@
         padding: 110px 24px 70px;
       }
 
-      .artist-name {
-        font-size: clamp(64px, 17vw, 100px);
-        margin-bottom: 28px;
-      }
+  .artist-name {
+  white-space: nowrap;
+  width: max-content;
+  max-width: none;
+
+  font-size: clamp(64px, 15vw, 240px);
+  font-weight: 700;
+  letter-spacing: -0.07em;
+  line-height: 0.85;
+
+  margin: 0;
+}
 
       .artist-photo {
         margin-bottom: 32px;
