@@ -103,53 +103,154 @@
 
 
     /* =========================
-       MAIN / INTRO
+       MAIN / INTRO — EDITORIAL COLLAGE
     ========================= */
 
     main {
       min-height: 100svh;
-
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-
-      padding: 120px 24px 80px;
-      text-align: center;
+      padding: 118px 5vw 72px;
+      text-align: left;
+      overflow: hidden;
     }
 
     .intro {
-      width: 100%;
-      max-width: 900px;
+      position: relative;
+      width: min(100%, 1440px);
+      min-height: min(690px, calc(100svh - 190px));
+      isolation: isolate;
     }
 
-    .artist-name {
-      font-size: clamp(72px, 15vw, 180px);
+    .collage-label {
+      position: absolute;
+      z-index: 3;
+      top: 1%;
+      left: 1%;
+      color: #777;
+      font-family: Arial, sans-serif;
+      font-size: 9px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+
+    .collage-title {
+      position: absolute;
+      z-index: 3;
+      left: 4%;
+      top: 35%;
+      margin: 0;
+      color: rgba(245,245,245,.94);
+      font-family: Arial, sans-serif;
+      font-size: clamp(72px, 13vw, 190px);
       font-weight: 700;
-      letter-spacing: -0.07em;
-      line-height: 1;
-      margin-bottom: 36px;
+      line-height: .78;
+      letter-spacing: -.095em;
+      pointer-events: none;
+      mix-blend-mode: difference;
     }
 
-    .artist-photo {
+    .collage-title span { display: block; }
+    .collage-title span:last-child { padding-left: .48em; }
+
+    .collage-note {
+      position: absolute;
+      z-index: 3;
+      right: 1%;
+      bottom: 3%;
+      color: #777;
+      font-family: Arial, sans-serif;
+      font-size: 9px;
+      letter-spacing: .18em;
+      text-align: right;
+      line-height: 1.9;
+    }
+
+    .collage-rule {
+      position: absolute;
+      z-index: 2;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+      background: #292929;
+    }
+
+    .photo-tile {
+      position: absolute;
+      display: block;
+      overflow: hidden;
+      border: 0;
+      padding: 0;
+      background: #151515;
+      cursor: zoom-in;
+      outline-offset: 5px;
+      transition: transform .55s cubic-bezier(.2,.7,.2,1), filter .4s ease;
+    }
+
+    .photo-tile img {
       display: block;
       width: 100%;
-      max-width: 720px;
-      height: auto;
-      margin: 0 auto 40px;
-      object-fit: contain;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(.82);
+      transition: transform .8s cubic-bezier(.2,.7,.2,1), filter .5s ease;
     }
 
-    .description {
-      max-width: 460px;
-      margin: 0 auto 40px;
+    .photo-tile:hover { z-index: 4; transform: translateY(-5px) rotate(0deg) !important; }
+    .photo-tile:hover img { transform: scale(1.045); filter: saturate(1); }
+    .photo-tile:focus-visible { outline: 1px solid #eee; }
 
-      color: #aaa;
-      font-size: 14px;
-      line-height: 2;
-      word-break: keep-all;
+    .photo-1 { left: 7%; top: 9%; width: 18%; height: 48%; transform: rotate(-2deg); }
+    .photo-2 { left: 27%; top: 18%; width: 13%; height: 30%; transform: rotate(2deg); }
+    .photo-3 { left: 42%; top: 5%; width: 17%; height: 37%; transform: rotate(1deg); }
+    .photo-4 { right: 5%; top: 10%; width: 19%; height: 52%; transform: rotate(2deg); }
+    .photo-5 { left: 19%; bottom: 7%; width: 14%; height: 34%; transform: rotate(1deg); }
+    .photo-6 { left: 36%; bottom: 5%; width: 22%; height: 37%; transform: rotate(-2deg); }
+    .photo-7 { right: 25%; bottom: 9%; width: 13%; height: 28%; transform: rotate(2deg); }
+    .photo-8 { right: 9%; bottom: 3%; width: 13%; height: 29%; transform: rotate(-2deg); }
+    .photo-9 { left: 1%; bottom: 17%; width: 11%; height: 26%; transform: rotate(-3deg); }
+
+    .photo-index {
+      position: absolute;
+      left: 8px;
+      bottom: 8px;
+      color: white;
+      font: 9px/1 Arial, sans-serif;
+      letter-spacing: .12em;
+      text-shadow: 0 1px 6px #000;
+      pointer-events: none;
     }
 
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: grid;
+      grid-template-columns: 64px minmax(0, 1fr) 64px;
+      align-items: center;
+      justify-items: center;
+      padding: 48px 24px;
+      background: rgba(0,0,0,.94);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .25s ease, visibility .25s ease;
+    }
+
+    .lightbox.is-open { opacity: 1; visibility: visible; }
+    .lightbox-image-wrap { width: min(100%, 1100px); height: min(82vh, 1000px); display: grid; place-items: center; }
+    .lightbox-image { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+    .lightbox-button, .lightbox-close {
+      display: grid; place-items: center;
+      width: 44px; height: 44px;
+      border: 1px solid #444; border-radius: 50%;
+      color: #eee; background: transparent; cursor: pointer;
+      font: 20px/1 Arial, sans-serif;
+    }
+    .lightbox-close { position: absolute; top: 24px; right: 28px; }
+    .lightbox-count { position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%); color: #777; font: 10px Arial, sans-serif; letter-spacing: .2em; }
+    body.lightbox-open { overflow: hidden; }
 
     /* =========================
        SOCIAL LINKS
@@ -510,6 +611,28 @@
     }
 
 
+    @media (max-width: 700px) {
+      main { min-height: 100svh; padding: 100px 5vw 44px; }
+      .intro { min-height: 680px; min-height: calc(100svh - 145px); }
+      .collage-label { top: 0; left: 0; font-size: 8px; }
+      .collage-title { top: 39%; left: 0; font-size: clamp(64px, 19vw, 120px); }
+      .photo-1 { left: 5%; top: 8%; width: 32%; height: 31%; }
+      .photo-2 { left: 41%; top: 5%; width: 22%; height: 24%; }
+      .photo-3 { right: 3%; left: auto; top: 15%; width: 28%; height: 30%; }
+      .photo-4 { right: 4%; top: 49%; width: 28%; height: 34%; }
+      .photo-5 { left: 4%; bottom: 4%; width: 25%; height: 27%; }
+      .photo-6 { left: 32%; bottom: 5%; width: 31%; height: 30%; }
+      .photo-7 { right: 35%; bottom: 38%; width: 19%; height: 20%; }
+      .photo-8 { right: 2%; bottom: 4%; width: 27%; height: 25%; }
+      .photo-9 { left: 2%; top: 43%; width: 17%; height: 21%; }
+      .collage-note { right: 0; bottom: 0; font-size: 7px; }
+      .photo-index { left: 5px; bottom: 5px; font-size: 8px; }
+      .lightbox { grid-template-columns: 36px minmax(0, 1fr) 36px; gap: 6px; padding: 52px 10px; }
+      .lightbox-image-wrap { height: 78vh; }
+      .lightbox-button { width: 34px; height: 34px; }
+      .lightbox-close { top: 12px; right: 12px; }
+    }
+
     /* REDUCED MOTION */
 
     @media (prefers-reduced-motion: reduce) {
@@ -773,56 +896,34 @@
   </header>
 
 
-  <!-- MAIN INTRO -->
-
+  <!-- MAIN INTRO / EDITORIAL PHOTO COLLAGE -->
   <main>
-    <section class="intro intro-gallery">
-      <div class="intro-heading">
-        <h1 class="artist-name">SLEEQ</h1>
-        <p class="gallery-caption">SELECT A FRAME TO EXPAND <span>— 09 PORTRAITS</span></p>
-      </div>
+    <section class="intro" aria-label="SLEEQ photo archive">
+      <p class="collage-label">SLEEQ / PERSONAL ARCHIVE — 2026</p>
+      <h1 class="collage-title"><span>SLEE</span><span>Q.</span></h1>
 
-      <div class="portrait-grid" aria-label="SLEEQ photo archive">
-        <button class="portrait-tile" type="button" data-full="./images/intro-01.jpg" aria-label="사진 1 크게 보기">
-          <img src="./images/intro-01.jpg" alt="SLEEQ portrait in a black suit" loading="eager">
-          <span class="portrait-number">01</span>
-        </button>
-        <button class="portrait-tile" type="button" data-full="./images/intro-02.jpg" aria-label="사진 2 크게 보기">
-          <img src="./images/intro-02.jpg" alt="SLEEQ in a black suit, standing" loading="eager">
-          <span class="portrait-number">02</span>
-        </button>
-        <button class="portrait-tile" type="button" data-full="./images/intro-03.jpg" aria-label="사진 3 크게 보기">
-          <img src="./images/intro-03.jpg" alt="SLEEQ in a white shirt and tie" loading="eager">
-          <span class="portrait-number">03</span>
-        </button>
-        <button class="portrait-tile" type="button" data-full="./images/intro-04.jpg" aria-label="사진 4 크게 보기">
-          <img src="./images/intro-04.jpg" alt="SLEEQ in a white shirt, portrait" loading="lazy">
-          <span class="portrait-number">04</span>
-        </button>
-        <button class="portrait-tile" type="button" data-full="./images/intro-05.jpg" aria-label="사진 5 크게 보기">
-          <img src="./images/intro-05.jpg" alt="SLEEQ in a white shirt, close-up" loading="lazy">
-          <span class="portrait-number">05</span>
-        </button>
-        <button class="portrait-tile" type="button" data-full="./images/intro-06.jpg" aria-label="사진 6 크게 보기">
-          <img src="./images/intro-06.jpg" alt="SLEEQ in a red jacket on a rooftop" loading="lazy">
-          <span class="portrait-number">06</span>
-        </button>
-        <button class="portrait-tile" type="button" data-full="./images/intro-07.jpg" aria-label="사진 7 크게 보기">
-          <img src="./images/intro-07.jpg" alt="SLEEQ in profile in a striped shirt" loading="lazy">
-          <span class="portrait-number">07</span>
-        </button>
-        <button class="portrait-tile" type="button" data-full="./images/intro-08.jpg" aria-label="사진 8 크게 보기">
-          <img src="./images/intro-08.jpg" alt="SLEEQ standing outdoors in a blue shirt" loading="lazy">
-          <span class="portrait-number">08</span>
-        </button>
-        <button class="portrait-tile" type="button" data-full="./images/intro-09.jpg" aria-label="사진 9 크게 보기">
-          <img src="./images/intro-09.jpg" alt="SLEEQ in a red jacket, close-up" loading="lazy">
-          <span class="portrait-number">09</span>
-        </button>
-      </div>
+      <button class="photo-tile photo-1" data-photo="0" aria-label="사진 1 크게 보기"><img src="./images/intro-01.jpg" alt="SLEEQ, black suit portrait"><span class="photo-index">01</span></button>
+      <button class="photo-tile photo-2" data-photo="1" aria-label="사진 2 크게 보기"><img src="./images/intro-02.jpg" alt="SLEEQ, black suit portrait"><span class="photo-index">02</span></button>
+      <button class="photo-tile photo-3" data-photo="2" aria-label="사진 3 크게 보기"><img src="./images/intro-03.jpg" alt="SLEEQ, monochrome portrait"><span class="photo-index">03</span></button>
+      <button class="photo-tile photo-4" data-photo="3" aria-label="사진 4 크게 보기"><img src="./images/intro-04.jpg" alt="SLEEQ, monochrome full portrait"><span class="photo-index">04</span></button>
+      <button class="photo-tile photo-5" data-photo="4" aria-label="사진 5 크게 보기"><img src="./images/intro-05.jpg" alt="SLEEQ, monochrome close-up"><span class="photo-index">05</span></button>
+      <button class="photo-tile photo-6" data-photo="5" aria-label="사진 6 크게 보기"><img src="./images/intro-06.jpg" alt="SLEEQ, red jacket rooftop portrait"><span class="photo-index">06</span></button>
+      <button class="photo-tile photo-7" data-photo="6" aria-label="사진 7 크게 보기"><img src="./images/intro-07.jpg" alt="SLEEQ, side profile portrait"><span class="photo-index">07</span></button>
+      <button class="photo-tile photo-8" data-photo="7" aria-label="사진 8 크게 보기"><img src="./images/intro-08.jpg" alt="SLEEQ, outdoor portrait"><span class="photo-index">08</span></button>
+      <button class="photo-tile photo-9" data-photo="8" aria-label="사진 9 크게 보기"><img src="./images/intro-09.jpg" alt="SLEEQ, red jacket portrait"><span class="photo-index">09</span></button>
+
+      <p class="collage-note">MUSIC / ART / LIFE<br>SELECT A FRAME TO EXPAND</p>
+      <div class="collage-rule" aria-hidden="true"></div>
     </section>
   </main>
 
+  <div class="lightbox" id="photo-lightbox" role="dialog" aria-modal="true" aria-label="사진 확대 보기">
+    <button class="lightbox-close" type="button" aria-label="닫기">×</button>
+    <button class="lightbox-button lightbox-prev" type="button" aria-label="이전 사진">‹</button>
+    <div class="lightbox-image-wrap"><img class="lightbox-image" alt="" src=""></div>
+    <button class="lightbox-button lightbox-next" type="button" aria-label="다음 사진">›</button>
+    <span class="lightbox-count" aria-live="polite">01 / 09</span>
+  </div>
 
   <!-- DISCOGRAPHY -->
 
@@ -1026,6 +1127,45 @@
         if (event.key === 'Escape') closeViewer();
         if (event.key === 'ArrowLeft') showPhoto(current - 1);
         if (event.key === 'ArrowRight') showPhoto(current + 1);
+      });
+    })();
+  </script>
+
+
+  <script>
+    (() => {
+      const tiles = [...document.querySelectorAll('.photo-tile')];
+      const lightbox = document.getElementById('photo-lightbox');
+      const image = lightbox.querySelector('.lightbox-image');
+      const count = lightbox.querySelector('.lightbox-count');
+      let current = 0;
+      const show = (index) => {
+        current = (index + tiles.length) % tiles.length;
+        const source = tiles[current].querySelector('img');
+        image.src = source.src;
+        image.alt = source.alt;
+        count.textContent = `${String(current + 1).padStart(2, '0')} / ${String(tiles.length).padStart(2, '0')}`;
+      };
+      const open = (index) => {
+        show(index);
+        lightbox.classList.add('is-open');
+        document.body.classList.add('lightbox-open');
+        lightbox.querySelector('.lightbox-close').focus();
+      };
+      const close = () => {
+        lightbox.classList.remove('is-open');
+        document.body.classList.remove('lightbox-open');
+      };
+      tiles.forEach((tile, index) => tile.addEventListener('click', () => open(index)));
+      lightbox.querySelector('.lightbox-close').addEventListener('click', close);
+      lightbox.querySelector('.lightbox-prev').addEventListener('click', () => show(current - 1));
+      lightbox.querySelector('.lightbox-next').addEventListener('click', () => show(current + 1));
+      lightbox.addEventListener('click', (event) => { if (event.target === lightbox) close(); });
+      document.addEventListener('keydown', (event) => {
+        if (!lightbox.classList.contains('is-open')) return;
+        if (event.key === 'Escape') close();
+        if (event.key === 'ArrowLeft') show(current - 1);
+        if (event.key === 'ArrowRight') show(current + 1);
       });
     })();
   </script>
